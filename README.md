@@ -3,7 +3,7 @@ This implementation of instance gateway is intended to be used for testing the i
 
 ## REST API
 ### Sending instances
-Sending instances is done by sending a post request to ``<service-address>/api/test/instance-gateway/send-incoming-instance-event``. In case a param og the body is not included in the request, a randomly generated value will be created and included in the instance.
+Sending instances is done by sending a post request to ``<service-address>/api/test/instance-gateway/send-incoming-instance-event``. In case a param or the body is not included in the request, a randomly generated value will be created and included in the instance.
 
 #### Request params
 | Param                            | Type     | Description                       |
@@ -41,7 +41,7 @@ class InstanceField {
 ```
 
 ### Sending error events
-Sending instances is done by sending a post request to ``<service-address>/api/test/instance-gateway/send-error-event``. In case a param og the body is not included in the request, a randomly generated value will be created and included in the instance.
+Sending instances is done by sending a post request to ``<service-address>/api/test/instance-gateway/send-error-event``. In case a param or the body is not included in the request, a randomly generated value will be created and included in the instance.
 
 #### Request params
 | Param                            | Type     | Description                       |
