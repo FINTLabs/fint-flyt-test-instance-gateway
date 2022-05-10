@@ -17,27 +17,33 @@ Sending instances is done by sending a post request to ``<service-address>/api/t
 | `correlationId`                  | `String` | Instance flow header property     |
 
 #### Body
-JSON serialized ``Instance`` model:
+JSON serialized ``Instance`` model.
 
+##### Example
 ```
-class Instance {
-    String formId;
-    List<Document> documents;
-    Map<String, InstanceField> fields;
-    String uri;
-}
-```
-```
-class Document {
-    String format;
-    String uri;
-}
-```
-```
-class InstanceField {
-    String name;
-    String value;
-}
+curl --request POST \
+  --url 'http://localhost:8091/api/test/instance-gateway/send-incoming-instance-event?orgId=orgIdHeaderValue&service=serviceHeaderValue&sourceApplication=sourceApplicationHeaderValue&sourceApplicationInstanceId=sourceApplicationInstanceIdHeaderValue&sourceApplicationIntegrationId=sourceApplicationIntegrationIdHeaderValue&correlationId=correlationIdHeaderValue' \
+  --header 'Content-Type: application/json' \
+  --data '{
+    "formId": "instanceFormId",
+    "documents": [
+      {
+        "format": "documentFormat",
+        "uri": "documentUri"
+      }
+    ],
+    "fields": {
+      "field1Name": {
+        "name": "field1Name",
+        "value": "field1Value"
+        },
+        "field2Name": {
+          "name": "field2Name",
+          "value": "field2Value"
+        }
+    },
+    "uri": "instanceUri"
+  }'
 ```
 
 ### Sending error events
@@ -57,14 +63,26 @@ Sending instances is done by sending a post request to ``<service-address>/api/t
 #### Body
 JSON serialized ``ErrorCollection`` model:
 
+##### Example
 ```
-class ErrorCollection {
-    Collection<Error> errors;
-}
-```
-```
-class Error {
-    String errorCode;
-    Map<String, String> args;
-}
+curl --request POST \
+  --url 'http://localhost:8091/api/test/instance-gateway/send-error-event?orgId=orgIdHeaderValue&service=serviceHeaderValue&sourceApplication=sourceApplicationHeaderValue&sourceApplicationInstanceId=sourceApplicationInstanceIdHeaderValue&sourceApplicationIntegrationId=sourceApplicationIntegrationIdHeaderValue&correlationId=correlationIdHeaderValue' \
+  --header 'Content-Type: application/json' \
+  --data '{
+  "errors": [
+    {
+      "errorCode": "errorCode1",
+      "args": {
+        "arg1" : "arg1Value",
+        "arg2" : "arg2Value"
+      }
+    },
+    {
+      "errorCode": "errorCode2",
+      "args": {
+        "arg1" : "arg1Value"
+      }
+    }
+  ]
+}'
 ```
